@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A from-scratch CHIP-8 emulator learning project."
+    />
+    <title>CHIP-8 Emulator Lab</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="site-header">
+        <p class="eyebrow">FROM SCRATCH · CHECKPOINT 1</p>
+        <h1>CHIP-8 Emulator Lab</h1>
+        <p class="lede">
+          A 4 KB imaginary computer waiting politely to be taught how to think.
+        </p>
+      </header>
+
+      <section class="machine" aria-label="CHIP-8 emulator">
+        <div class="display-wrap">
+          <canvas
+            id="screen"
+            width="640"
+            height="320"
+            aria-label="CHIP-8 screen, currently blank"
+          ></canvas>
+          <p class="screen-caption">64 × 32 monochrome pixels</p>
+        </div>
+
+        <aside class="console" aria-label="Machine state">
+          <div class="status-card">
+            <p class="label">Status</p>
+            <p id="status" class="status" aria-live="polite">Machine reset. Probe program loaded.</p>
+          </div>
+
+          <div class="controls">
+            <button id="step-button" type="button">Fetch next opcode</button>
+            <button id="reset-button" class="secondary" type="button">Reset machine</button>
+          </div>
+
+          <dl class="state-grid">
+            <div>
+              <dt>PC</dt>
+              <dd id="program-counter">0x0200</dd>
+            </div>
+            <div>
+              <dt>I</dt>
+              <dd id="index-register">0x0000</dd>
+            </div>
+            <div>
+              <dt>Last opcode</dt>
+              <dd id="last-opcode">—</dd>
+            </div>
+            <div>
+              <dt>Stack depth</dt>
+              <dd id="stack-depth">0</dd>
+            </div>
+          </dl>
+
+          <div class="register-panel">
+            <p class="label">V registers</p>
+            <pre id="registers" aria-label="General-purpose CHIP-8 registers"></pre>
+          </div>
+        </aside>
+      </section>
+
+      <section class="next-step">
+        <p class="eyebrow">YOUR NEXT MOVE</p>
+        <h2>Make the CPU obey <code>0x600A</code>.</h2>
+        <p>
+          The first two bytes of the probe program mean “set V0 to hexadecimal A.”
+          The button currently only fetches that instruction. In
+          <code>src/chip8.js</code>, turn that fetch into a decoder and implement
+          the <code>6XNN</code> instruction.
+        </p>
+      </section>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
