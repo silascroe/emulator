@@ -56,9 +56,14 @@ function updateInspector() {
     chip8.lastOpcode === null ? "—" : asHex(chip8.lastOpcode, 4);
   stackDepth.textContent = String(chip8.sp);
 
-  registers.textContent = Array.from(chip8.v, (value, index) => {
-    return `V${index.toString(16).toUpperCase()}  ${asHex(value)}`;
-  }).join(index => (index + 1) % 4 === 0 ? "\n" : "   ");
+  registers.textContent = Array.from({ length: 4 }, (_, row) => {
+    const firstRegister = row * 4;
+
+    return Array.from({ length: 4 }, (_, offset) => {
+      const index = firstRegister + offset;
+      return `V${index.toString(16).toUpperCase()}  ${asHex(chip8.v[index])}`;
+    }).join("   ");
+  }).join("\n");
 }
 
 function draw() {
